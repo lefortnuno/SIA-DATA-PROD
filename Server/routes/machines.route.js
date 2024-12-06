@@ -4,6 +4,8 @@ const MachinesController = require("../controllers/machines.controller");
 router.post("/", MachinesController.addMachine);
 
 router.get("/", MachinesController.getAllMachines);
+router.get("/IDM/", MachinesController.getAllMachinesIDM);
+router.get("/barChart/", MachinesController.getStatMachines);
 router.get("/glitch/", MachinesController.placeAuGlitch);
 
 router.get("/:id", MachinesController.getIdMachine);

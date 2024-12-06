@@ -4,6 +4,10 @@
 # Ignore specific directories  
 **/.env
 **/build/
-**/power.bat
-# **/Client
-**/Warehouse
+**/power.bat 
+**/Warehouse/capteurs
+**/init_projet.py
+
+# Ignorer tous les fichiers Excel dans le dossier actuel
+*.xls
+*.xlsx

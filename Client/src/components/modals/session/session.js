@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import { BsXCircleFill, BsCheckCircleFill } from "react-icons/bs";
 
-import "../edit/edit.css";
+import "./edit.css";
 
 const LogoutConfirmationModal = ({ show, handleClose, handleLogout }) => {
   return (
@@ -30,7 +30,7 @@ const LogoutConfirmationModal = ({ show, handleClose, handleLogout }) => {
           onClick={handleLogout}
           className="action-button-session"
         >
-          OUI
+          <span>OUI </span>
           <BsCheckCircleFill className="action-icon" />
         </Button>
       </div>

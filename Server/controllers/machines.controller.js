@@ -82,3 +82,31 @@ module.exports.placeAuGlitch = async (req, res) => {
     ResponseHelper.sendResponse(res, false, error.message, 500);
   }
 };
+
+module.exports.getStatMachines = async (req, res) => {
+  try {
+    const result = await Machines.getStatMachines();
+    ResponseHelper.sendResponse(
+      res,
+      true,
+      "Liste récupérée avec succès !",
+      result
+    );
+  } catch (error) {
+    ResponseHelper.sendResponse(res, false, error.message, 500);
+  }
+};
+
+module.exports.getAllMachinesIDM = async (req, res) => {
+  try {
+    const result = await Machines.getAllMachinesIDM();
+    ResponseHelper.sendResponse(
+      res,
+      true,
+      "Liste récupérée avec succès !",
+      result
+    );
+  } catch (error) {
+    ResponseHelper.sendResponse(res, false, error.message, 500);
+  }
+};

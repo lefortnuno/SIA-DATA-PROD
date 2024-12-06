@@ -5,6 +5,8 @@ import { formatDate, formatHoursMin } from "../../contexts/dates/formatDate";
 import Template from "../../components/template/template";
 import Pagination from "../../components/pagination/pagination";
 import LoadingTable from "../../components/loading/tables/loadingTable";
+import CapteursLineChart from "./capteurs.lineChart";
+import CapteursPieChart from "./capteurs.pieChart";
 
 import { useEffect, useState } from "react";
 
@@ -38,6 +40,8 @@ export default function Capteurs() {
           response.data.data.length > 0
         ) {
           const allHisto = response.data.data;
+          console.log("alll ", allHisto);
+
           setHisto(allHisto);
           setTotalPages(Math.ceil(allHisto.length / histoPerPage));
         } else {
@@ -121,7 +125,9 @@ export default function Capteurs() {
             onPageChange={setCurrentPage}
           />
         </div>
-      </main> 
+        {histo.length > 0 && <CapteursLineChart data={histo} />}
+        {histo.length > 0 && <CapteursPieChart data={histo} />}
+      </main>
     </Template>
   );
 }

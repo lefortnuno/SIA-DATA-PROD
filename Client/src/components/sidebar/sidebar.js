@@ -7,6 +7,9 @@ import {
   BsPeopleFill,
   BsBarChartFill,
   BsPersonCircle,
+  BsGearFill,
+  BsSpeedometer2,
+  BsSpeedometer,
 } from "react-icons/bs";
 
 import "./sidebar.css";
@@ -19,7 +22,9 @@ export default function Sidebar() {
       className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-white"
       id="sidenav-main"
     >
-      <div className="sidenav-header"></div>
+      <div className="sidenav-header">
+        <div className="sidenav-header-logo"></div>
+      </div>
       <hr className="horizontal dark mt-0" />
       <div
         className="collapse navbar-collapse w-auto nySidebar-ko"
@@ -48,7 +53,7 @@ export default function Sidebar() {
               }`}
             >
               <div className="navIcone">
-                <BsCalendarFill />
+                <BsGearFill />
               </div>
               <span className="navText">Machines</span>
             </Link>
@@ -62,7 +67,7 @@ export default function Sidebar() {
               }`}
             >
               <div className="navIcone">
-                <BsPeopleFill />
+                <BsSpeedometer2 />
               </div>
               <span className="navText">Capteurs</span>
             </Link>
@@ -97,22 +102,6 @@ export default function Sidebar() {
                 <BsPeopleFill />
               </div>
               <span className="navText">Utilisateurs</span>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/pointages/"
-              className={`nav-link customNavLink ${
-                location.pathname === "/pointages/" ||
-                location.pathname === "/pointagesWeeks/"
-                  ? "atato"
-                  : ""
-              }`}
-            >
-              <div className="navIcone">
-                <BsClockFill />
-              </div>
-              <span className="navText">Pointages</span>
             </Link>
           </li>
         </ul>

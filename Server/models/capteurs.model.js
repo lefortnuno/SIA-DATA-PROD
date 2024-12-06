@@ -26,7 +26,8 @@ Capteurs.addCapteur = async (newCapteur) => {
       newCapteur.vibration,
     ];
 
-    const result = await dbConn.query(query, values);
+    const result = await dbConn.query(query, values); 
+
     return result;
   } catch (error) {
     throw error;

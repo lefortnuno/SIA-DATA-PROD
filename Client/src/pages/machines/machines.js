@@ -5,6 +5,7 @@ import { formatDate } from "../../contexts/dates/formatDate";
 import Template from "../../components/template/template";
 import Pagination from "../../components/pagination/pagination";
 import LoadingTable from "../../components/loading/tables/loadingTable";
+import MachinesBarChart from "./machines.barChart";
 
 import { useEffect, useState } from "react";
 
@@ -15,6 +16,7 @@ const histoPerPage = 5;
 
 export default function Machines() {
   const [histo, setHisto] = useState([]);
+  const [barChart, setBarChart] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -26,6 +28,15 @@ export default function Machines() {
     return () => {
       eventEmitter.off("miseAJour", handleMAJ); // Nettoyer l'écouteur
     };
+  }, []);
+
+  useEffect(() => {
+    // getBarChart();
+
+    const intervalId = setInterval(() => {
+      getBarChart();
+    }, 1000);
+    return () => clearInterval(intervalId);
   }, []);
 
   function getHisto() {
@@ -50,6 +61,26 @@ export default function Machines() {
       });
   }
 
+  function getBarChart() {
+    axios
+      .get(url_req + `barChart/`)
+      .then(function (response) {
+        if (
+          response.status === 200 &&
+          response.data.success &&
+          response.data.data.length > 0
+        ) {
+          const allHisto = response.data.data;
+          setBarChart(allHisto);
+        } else {
+          setBarChart([]);
+        }
+      })
+      .catch((error) => {
+        setBarChart([]);
+      });
+  }
+
   const indexOfLastService = currentPage * histoPerPage;
   const indexOfFirstService = indexOfLastService - histoPerPage;
   const currentHisto = histo.slice(indexOfFirstService, indexOfLastService);
@@ -57,6 +88,7 @@ export default function Machines() {
   return (
     <Template>
       <main className="col-md-12 ms-sm-auto col-lg-12 px-md-4 mt-0 main">
+        {barChart.length > 0 && <MachinesBarChart data={barChart} />}
         <div className="pt-3 pb-2 mb-3">
           <div className="text-center my-3 mt-0">
             <div className="d-flex justify-content-between align-items-center">

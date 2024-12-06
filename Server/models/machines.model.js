@@ -10,7 +10,7 @@ let Machines = function (machine) {
 const reqSQL = `SELECT * FROM machines `;
 const reqOrdre = ` ORDER BY m_created_at DESC `;
 
-Machines.addMachine = async (newMachine) => { 
+Machines.addMachine = async (newMachine) => {
   try {
     const query = `INSERT INTO machines (id_machine, libelle_machine, date_maintenance, etat) 
                    VALUES ($1, $2, $3, $4)`;
@@ -83,6 +83,29 @@ Machines.updateMachine = async (updateMachine, id) => {
     return { success: true, message: "Mise à jour réussie" };
   } catch (error) {
     throw new Error("Erreur MIse à jour : " + error.message);
+  }
+};
+
+Machines.getStatMachines = async (result) => {
+  try {
+    const requetes = `SELECT m.id_machine, m.libelle_machine, ROUND(AVG(c.temperature)::NUMERIC, 2) AS avg_temperature, ROUND(AVG(c.pression)::NUMERIC, 2) AS avg_pression, ROUND(AVG(c.vibration)::NUMERIC, 2) AS avg_vibration FROM machines m JOIN capteurs c ON m.id_machine = c.id_machine GROUP BY m.id_machine, m.libelle_machine ORDER BY m.id_machine `;
+    const result = await dbConn.query(requetes);
+
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+Machines.getAllMachinesIDM = async (result) => {
+  try {
+    const result = await dbConn.query(
+      "SELECT id_machine FROM machines WHERE etat=false ORDER BY m_created_at DESC"
+    );
+
+    return result.rows;
+  } catch (error) {
+    throw error;
   }
 };
 

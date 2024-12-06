@@ -24,6 +24,7 @@ export default function Header({ setVal }) {
       id="navbarBlur"
       navbar-scroll="false"
       {...(clickMe && { onClick: fermerSideBar })}
+      style={{height: "70px"}}
     >
       <div className="container-fluid py-1 px-3">
         <Titre />
