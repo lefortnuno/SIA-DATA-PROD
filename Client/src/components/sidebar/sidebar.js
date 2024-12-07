@@ -94,9 +94,9 @@ export default function Sidebar() {
 
           <li className="nav-item">
             <Link
-              to="/stats/"
+              to="/planning/"
               className={`nav-link customNavLink ${
-                location.pathname === "/stats/" ? "atato" : ""
+                location.pathname === "/planning/" ? "atato" : ""
               }`}
             >
               <div className="navIcone">
@@ -104,7 +104,7 @@ export default function Sidebar() {
               </div>
               <span
                 className={`navText ${
-                  location.pathname === "/stats/" ? "atato" : ""
+                  location.pathname === "/planning/" ? "atato" : ""
                 }`}
               >
                 Planning et Reunion
@@ -161,28 +161,6 @@ export default function Sidebar() {
           </li>
         </ul>
       </div>
-
-      {/* <div className="sidenav-footer mx-3 ">
-        <div
-          className="card card-background shadow-none card-background-mask-secondary"
-          id="sidenavCard"
-        >
-          <div className="full-background"></div>
-          <div className="card-body text-start p-3 w-100">
-            <div className="docs-info">
-              <h6 className="text-black text-xs up mb-0">Avez-vous</h6>
-              <p className="text-black text-xs font-weight-bold">
-                Besoin d'aide ?
-              </p>
-              <Link to="/docs/">
-                <div className="btn btn-white btn-sm w-100 mb-0 docs-aide">
-                  Documentation
-                </div>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </aside>
   );
 }
