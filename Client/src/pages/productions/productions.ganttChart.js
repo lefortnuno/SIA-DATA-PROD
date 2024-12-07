@@ -123,7 +123,7 @@ export default function GanttChart() {
           </div>
         ) : error ? (
           <p className="text-danger text-center">
-            Une erreur est survenue lors du chargement des données. Veuillez
+            Aucune donnée à afficher. Veuillez
             réessayer.
           </p>
         ) : ganttData.length > 1 ? (
