@@ -15,6 +15,7 @@ export default function Template({ children, customInput }) {
       className={`g-sidenav-show  bg-gray-200  ${
         val ? "g-sidenav-pinned" : ""
       }`}
+      style={{ margin: "0px", padding: "0px", top: "-40px" }}
     >
       <Sidebar setVal={setVal} />
       <main className="main-content position-relative max-height-vh-200 h-100 border-radius-lg">

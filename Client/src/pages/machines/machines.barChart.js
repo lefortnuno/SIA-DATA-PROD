@@ -92,8 +92,19 @@ export default function MachinesBarChart({ data }) {
   };
 
   return (
-    <div className="pt-3 pb-2 mb-3">
-      <h5>Analyse par Machine : Température, Pression et Vibration</h5>
+    <div
+      className="p-4 mb-3 mt-2"
+      style={{
+        padding: "20px",
+        backgroundColor: "#f9f9f9",
+        borderRadius: "8px",
+      }}
+    >
+      <div className="text-center mb-4">
+        <h5 style={{ color: "#000", fontWeight: "bold" }}>
+          Analyse par Machine : Température, Pression et Vibration
+        </h5>
+      </div>
       {data && data.length > 0 ? (
         // <Bar data={barChartData} options={{ responsive: true }} />
         <Bar data={barChartData} options={options} />

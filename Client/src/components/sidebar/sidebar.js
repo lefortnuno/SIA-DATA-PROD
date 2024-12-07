@@ -67,7 +67,7 @@ export default function Sidebar() {
                   location.pathname === "/productions/" ? "atato" : ""
                 }`}
               >
-                Poductions
+                Table des Voitures
               </span>
             </Link>
           </li>
@@ -80,34 +80,34 @@ export default function Sidebar() {
               }`}
             >
               <div className="navIcone">
-                <BsGearFill />
+                <BsSpeedometer2 />
               </div>
               <span
                 className={`navText ${
                   location.pathname === "/machines/" ? "atato" : ""
                 }`}
               >
-                Machines
+                Capteurs et Données IRL
               </span>
             </Link>
           </li>
 
           <li className="nav-item">
             <Link
-              to="/capteurs/"
+              to="/stats/"
               className={`nav-link customNavLink ${
-                location.pathname === "/capteurs/" ? "atato" : ""
+                location.pathname === "/stats/" ? "atato" : ""
               }`}
             >
               <div className="navIcone">
-                <BsSpeedometer2 />
+                <BsCalendarFill />
               </div>
               <span
                 className={`navText ${
-                  location.pathname === "/capteurs/" ? "atato" : ""
+                  location.pathname === "/stats/" ? "atato" : ""
                 }`}
               >
-                Capteurs
+                Planning et Reunion
               </span>
             </Link>
           </li>
@@ -127,16 +127,19 @@ export default function Sidebar() {
                   location.pathname === "/stats/" ? "atato" : ""
                 }`}
               >
-                Statistiques
+                Statistiques et Rapports
               </span>
             </Link>
           </li>
+
+          <hr className="horizontal dark mt-0" />
 
           <li className="nav-item mt-3">
             <h6 className="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
               Pages: Administrateurs
             </h6>
           </li>
+
           <li className="nav-item">
             <Link
               to="/users/"
@@ -152,7 +155,7 @@ export default function Sidebar() {
                   location.pathname === "/users/" ? "atato" : ""
                 }`}
               >
-                Utilisateurs
+                Gestions des Utilisateurs
               </span>
             </Link>
           </li>

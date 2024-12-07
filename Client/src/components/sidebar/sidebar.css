@@ -17,7 +17,7 @@
 }
 
 .nySidebar-ko {
-  min-height: 350px;
+  min-height: 380px;
 }
 .customNavLink {
   display: flex;
@@ -45,6 +45,9 @@
   background: linear-gradient(90deg, #d0797d 0%, #a55e71 100%);
 }
 
+.customNavLink:hover > .navText {
+  color: white;
+}
 .navIcone,
 .navText {
   color: black;
