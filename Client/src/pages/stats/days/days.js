@@ -43,7 +43,7 @@ const JoursTravaillesChart = ({ url }) => {
 
   return (
     <div>
-      <h5>Nombre moyen d'employés travaillant chaque jour de la semaine</h5>
+      <h5>Carte de Vente d'Automobile Dodge par Région (Avec GoogleMAPS)</h5>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
           data={joursData}

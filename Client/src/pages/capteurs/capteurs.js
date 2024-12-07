@@ -21,13 +21,10 @@ export default function Capteurs() {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    getHisto();
-    const handleMAJ = () => getHisto();
-
-    eventEmitter.on("miseAJour", handleMAJ);
-    return () => {
-      eventEmitter.off("miseAJour", handleMAJ); // Nettoyer l'écouteur
-    };
+    const intervalId = setInterval(() => {
+      getHisto();
+    }, 1000);
+    return () => clearInterval(intervalId);
   }, []);
 
   function getHisto() {
@@ -61,6 +58,15 @@ export default function Capteurs() {
   return (
     <Template>
       <main className="col-md-12 ms-sm-auto col-lg-12 px-md-4 mt-0 main">
+        <div className="row">
+          <div className="col-md-8">
+            {histo.length > 0 && <CapteursLineChart data={histo} />}
+          </div>
+          <div className="col-md-4">
+            {histo.length > 0 && <CapteursPieChart data={histo} />}
+          </div>
+        </div>
+
         <div className="pt-3 pb-2 mb-3">
           <div className="text-center my-3 mt-0">
             <div className="d-flex justify-content-between align-items-center">
@@ -125,8 +131,6 @@ export default function Capteurs() {
             onPageChange={setCurrentPage}
           />
         </div>
-        {histo.length > 0 && <CapteursLineChart data={histo} />}
-        {histo.length > 0 && <CapteursPieChart data={histo} />}
       </main>
     </Template>
   );

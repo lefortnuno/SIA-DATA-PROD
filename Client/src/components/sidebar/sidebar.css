@@ -5,7 +5,7 @@
 .sidenav-header {
   width: 100%;
   padding: 20px 20px;
-  border-bottom: 4px solid var(--alt-color); 
+  border-bottom: 4px solid var(--alt-color);
 }
 .sidenav-header-logo {
   background-image: var(--logo-background);
@@ -34,14 +34,24 @@
 }
 
 .customNavLink.atato {
-  background: linear-gradient(90deg, #4ad167 0%, #57a76a 100%);
+  background: linear-gradient(90deg, #e44e4e 0%, #b85555 100%);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.customNavLink:hover {
+  background: linear-gradient(90deg, #e44e4e 0%, #b85555 100%);
+}
 .customNavLink.atato:hover {
-  background: linear-gradient(90deg, #21ce46 0%, #18a037 100%);
+  background: linear-gradient(90deg, #d0797d 0%, #a55e71 100%);
 }
 
+.navIcone,
+.navText {
+  color: black;
+}
+.navText.atato {
+  color: white;
+}
 .navIcone {
   display: flex;
   align-items: center;
@@ -50,7 +60,6 @@
   border-radius: 8px;
   width: 30px;
   height: 30px;
-  color: #000;
   font-size: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -58,7 +67,6 @@
 }
 
 .navText {
-  color: black;
   font-size: 14px;
   margin-left: 8%;
   font-weight: 500;

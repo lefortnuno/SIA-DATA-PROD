@@ -1,5 +1,5 @@
 import "./App.css";
-import './assets/styles/auth.css'
+import "./assets/styles/auth.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/home/home";
 import Machines from "./pages/machines/machines";
 import Capteurs from "./pages/capteurs/capteurs";
+import Productions from "./pages/productions/productions";
 import Stats from "./pages/stats/stat";
 
 import PageNotFound from "./pages/404/page404";
@@ -22,6 +23,7 @@ function App() {
           <Route path="home/" element={<Home />} />
           <Route path="machines/" element={<Machines />} />
           <Route path="capteurs/" element={<Capteurs />} />
+          <Route path="productions/" element={<Productions />} />
           <Route path="stats/" element={<Stats />} />
 
           <Route path="/*" element={<PageNotFound />} />

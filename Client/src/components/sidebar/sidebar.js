@@ -10,6 +10,7 @@ import {
   BsGearFill,
   BsSpeedometer2,
   BsSpeedometer,
+  BsTable,
 } from "react-icons/bs";
 
 import "./sidebar.css";
@@ -41,7 +42,33 @@ export default function Sidebar() {
               <div className="navIcone">
                 <BsHouseFill />
               </div>
-              <span className="navText">Accueil</span>
+              <span
+                className={`navText ${
+                  location.pathname === "/home/" ? "atato" : ""
+                }`}
+              >
+                Tableau de Bord
+              </span>
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link
+              to="/productions/"
+              className={`nav-link customNavLink ${
+                location.pathname === "/productions/" ? "atato" : ""
+              }`}
+            >
+              <div className="navIcone">
+                <BsTable />
+              </div>
+              <span
+                className={`navText ${
+                  location.pathname === "/productions/" ? "atato" : ""
+                }`}
+              >
+                Poductions
+              </span>
             </Link>
           </li>
 
@@ -55,7 +82,13 @@ export default function Sidebar() {
               <div className="navIcone">
                 <BsGearFill />
               </div>
-              <span className="navText">Machines</span>
+              <span
+                className={`navText ${
+                  location.pathname === "/machines/" ? "atato" : ""
+                }`}
+              >
+                Machines
+              </span>
             </Link>
           </li>
 
@@ -69,9 +102,16 @@ export default function Sidebar() {
               <div className="navIcone">
                 <BsSpeedometer2 />
               </div>
-              <span className="navText">Capteurs</span>
+              <span
+                className={`navText ${
+                  location.pathname === "/capteurs/" ? "atato" : ""
+                }`}
+              >
+                Capteurs
+              </span>
             </Link>
           </li>
+
           <li className="nav-item">
             <Link
               to="/stats/"
@@ -82,7 +122,13 @@ export default function Sidebar() {
               <div className="navIcone">
                 <BsBarChartFill />
               </div>
-              <span className="navText">Statistiques</span>
+              <span
+                className={`navText ${
+                  location.pathname === "/stats/" ? "atato" : ""
+                }`}
+              >
+                Statistiques
+              </span>
             </Link>
           </li>
 
@@ -101,13 +147,19 @@ export default function Sidebar() {
               <div className="navIcone">
                 <BsPeopleFill />
               </div>
-              <span className="navText">Utilisateurs</span>
+              <span
+                className={`navText ${
+                  location.pathname === "/users/" ? "atato" : ""
+                }`}
+              >
+                Utilisateurs
+              </span>
             </Link>
           </li>
         </ul>
       </div>
 
-      <div className="sidenav-footer mx-3 ">
+      {/* <div className="sidenav-footer mx-3 ">
         <div
           className="card card-background shadow-none card-background-mask-secondary"
           id="sidenavCard"
@@ -127,7 +179,7 @@ export default function Sidebar() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </aside>
   );
 }

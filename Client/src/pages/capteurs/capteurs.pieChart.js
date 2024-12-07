@@ -58,16 +58,16 @@ export default function CapteursPieChart({ data }) {
   };
 
   return (
-    <div className="pt-3 pb-2 mb-3" style={{ width: "400px", height: "400px" }}>
-      <h5>Répartition des Machines</h5>
+    <div className="pt-3 pb-2 mb-3" >
+      {/* <h5>Répartition des Machines</h5>
       {data && data.length > 0 ? (
         <Pie data={etatData} />
       ) : (
         <p>Aucune donnée à afficher.</p>
-      )}
+      )} */}
 
       <div className="pt-3 pb-2 mb-3">
-        <h5>Analyse des Températures des Capteurs</h5>
+        <h6>Marque de Dodge le plus vendu</h6>
         {data && data.length > 0 ? (
           <Pie data={pieChartData} />
         ) : (

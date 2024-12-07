@@ -1,0 +1,9 @@
+Pour le **management des données de production d'une industrie automobile**, voici les principales données à collecter et stocker :
+
+### PieCHart: Quantités produites par type de produit (selon produit dans ordres_fabrication).
+
+### LineChart : Évolution des fabrications dans le temps.
+
+### GanttChart : Planification des étapes de fabrication +Dépendances entre étape .
+
+### PieCHart: Localisation des ressources (postes ou ateliers).

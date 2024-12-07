@@ -36,7 +36,7 @@ export default function CapteursLineChart({ data }) {
 
   return (
     <div className="pt-3 pb-2 mb-3">
-      <h5>Dashboard de Production</h5>
+      <h5>Courbe des Matières Prémiere</h5>
       {data && data.length > 0 ? (
         <Line data={chartData} />
       ) : (

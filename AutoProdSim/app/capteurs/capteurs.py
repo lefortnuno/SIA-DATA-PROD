@@ -112,7 +112,7 @@ def save_data_to_api(data):
                 serialized_record = serialize_record(record)  # Sérialisez avant envoi
                 response = requests.post(f"{API_URL}capteurs/", json=serialized_record)
                 response.raise_for_status()
-                print(f"Données envoyées : {record['id_capteur']}")
+                # print(f"Données envoyées : {record['id_capteur']}")
             except Exception as e:
                 print(f"Erreur lors de l'envoi des données : {e}")
  
