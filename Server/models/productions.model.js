@@ -144,4 +144,28 @@ Productions.updateProduction = async (updateProduction, id) => {
   }
 };
 
+Productions.getPieChart = async (result) => {
+  try {
+    const result = await dbConn.query(
+      `SELECT  produit, SUM(quantite) AS total_quantite FROM  ordres_fabrication GROUP BY  produit ORDER BY  total_quantite DESC; `
+    );
+
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+Productions.getLineChart = async (result) => {
+  try {
+    const result =
+      await dbConn.query(`SELECT DATE_TRUNC('month', date_lancement) AS mois, produit, SUM(quantite) AS total_quantite FROM ordres_fabrication GROUP BY DATE_TRUNC('month', date_lancement), produit ORDER BY mois, produit;
+`);
+
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = Productions;

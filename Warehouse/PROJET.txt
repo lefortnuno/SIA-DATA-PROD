@@ -2,7 +2,7 @@ Pour le **management des données de production d'une industrie automobile**, vo
 
 ### PieCHart: Quantités produites par type de produit (selon produit dans ordres_fabrication).
 
-### LineChart : Évolution des fabrications dans le temps.
+### LineChart : "QU'EST CE QUE JE VAIS METTRE ICI"
 
 ### GanttChart : Planification des étapes de fabrication +Dépendances entre étape .
 

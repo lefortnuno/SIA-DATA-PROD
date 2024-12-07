@@ -3,7 +3,9 @@ const ProductionsController = require("../controllers/productions.controller");
 
 router.post("/", ProductionsController.addProduction);
 
-router.get("/", ProductionsController.getAllProductions);   
+router.get("/", ProductionsController.getAllProductions);
+router.get("/pieChart/", ProductionsController.getPieChart);
+router.get("/lineChart/", ProductionsController.getLineChart);
 
 router.get("/:id", ProductionsController.getIdProduction);
 

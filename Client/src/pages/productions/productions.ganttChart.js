@@ -9,13 +9,12 @@ export default function GanttChart() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    // fetchGanttChartData();
+    fetchGanttChartData();
 
-    const intervalId = setInterval(() => {
-      fetchGanttChartData();
-    }, 1000);
-
-    return () => clearInterval(intervalId);
+    // const intervalId = setInterval(() => {
+    //   fetchGanttChartData();
+    // }, 1000);
+    // return () => clearInterval(intervalId);
   }, []);
 
   const fetchGanttChartData = () => {
@@ -107,8 +106,10 @@ export default function GanttChart() {
         borderRadius: "8px",
       }}
     >
-      <div className="text-center mb-4">
-        <h5 style={{ color: "#4A90E2", fontWeight: "bold" }}>
+      <div
+        className="text-center mb-4"
+      >
+        <h5 style={{ color: "#000", fontWeight: "bold" }}>
           Diagramme de Gantt - Planification des étapes
         </h5>
       </div>

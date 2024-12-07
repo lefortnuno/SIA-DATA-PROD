@@ -69,3 +69,32 @@ module.exports.getIdProduction = async (req, res) => {
     ResponseHelper.sendResponse(res, false, error.message, 500);
   }
 };
+
+module.exports.getPieChart = async (req, res) => {
+  try {
+    const result = await Productions.getPieChart();
+    ResponseHelper.sendResponse(
+      res,
+      true,
+      "Liste récupérée avec succès !",
+      result
+    );
+  } catch (error) {
+    ResponseHelper.sendResponse(res, false, error.message, 500);
+  }
+};
+
+
+module.exports.getLineChart = async (req, res) => {
+  try {
+    const result = await Productions.getLineChart();
+    ResponseHelper.sendResponse(
+      res,
+      true,
+      "Liste récupérée avec succès !",
+      result
+    );
+  } catch (error) {
+    ResponseHelper.sendResponse(res, false, error.message, 500);
+  }
+};
