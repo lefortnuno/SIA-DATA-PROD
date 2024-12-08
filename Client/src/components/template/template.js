@@ -20,7 +20,7 @@ export default function Template({ children, customInput }) {
       <Sidebar setVal={setVal} />
       <main className="main-content position-relative max-height-vh-200 h-100 border-radius-lg">
         <Header setVal={setVal} />
-        <div className="container-fluid py-0">
+        <div className="container-fluid py-0 nyContainerKo">
           {children}
           <Footer />
         </div>

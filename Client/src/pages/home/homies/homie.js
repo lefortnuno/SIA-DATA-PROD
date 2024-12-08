@@ -1,7 +1,4 @@
-import CapteursPieChart from "../../capteurs/capteurs.pieChart";
-import CapteursLineChart from "../../capteurs/capteurs.lineChart";
-import GanttChart from "../../productions/productions.ganttChart";
-import LoadingList from "../../../components/loading/listes/loadingList";
+import GanttChart from "../../Charts/gantt.chart";
 
 export default function Homie() {
   return (
@@ -9,7 +6,7 @@ export default function Homie() {
       <div className="row">
         <div className="col-md-12 mb-lg-0 mb-4">
           <GanttChart />
-        </div> 
+        </div>
       </div>
     </div>
   );

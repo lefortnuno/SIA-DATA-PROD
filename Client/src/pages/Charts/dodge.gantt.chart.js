@@ -78,7 +78,7 @@ export default function GanttChartVoiture({ prod }) {
       style={{
         padding: "20px",
         backgroundColor: "#f9f9f9",
-        borderRadius: "8px",
+        borderRadius: "8px", 
       }}
     >
       <div className="text-center mb-4">

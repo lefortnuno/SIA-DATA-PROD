@@ -24,7 +24,7 @@ ChartJS.register(
 
 const url_req = `productions/lineChart/`;
 
-export default function ProductionLineChartByMonth() {
+export default function LineChart() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -50,8 +50,7 @@ export default function ProductionLineChartByMonth() {
         setData([]);
       });
   }
-
-  // Générer tous les mois fixes de janvier à décembre 2024
+ 
   const allMonths = Array.from({ length: 12 }, (_, i) => {
     const month = i + 1; // De 1 à 12
     return `2024-${month.toString().padStart(2, "0")}`; // Format "2024-01", "2024-02", ...
@@ -61,8 +60,8 @@ export default function ProductionLineChartByMonth() {
   data.forEach((item) => {
     const { produit, mois, total_quantite } = item;
 
-    // Formater la clé mois au format "YYYY-MM"
-    const formattedMonth = mois.slice(0, 7); // Garde uniquement "YYYY-MM"
+    // format "YYYY-MM"
+    const formattedMonth = mois.slice(0, 7);  
 
     let productEntry = groupedData.find((entry) => entry.produit === produit);
     if (!productEntry) {
@@ -150,7 +149,7 @@ export default function ProductionLineChartByMonth() {
     <div className="pt-1 pb-2 mb-3">
       <div className="text-center mb-4">
         <h5 style={{ color: "#000", fontWeight: "bold" }}>
-          Évolution Mensuelle des Quantités Produites par Produit (2024)
+          Évolution Mensuelle des Quantités produites par Dodge (2024)
         </h5>
       </div>
       {data && data.length > 0 ? (

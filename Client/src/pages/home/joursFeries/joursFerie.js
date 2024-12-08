@@ -1,7 +1,7 @@
 import LoadingList from "../../../components/loading/listes/loadingList";
 import eBoa from "../../../assets/images/dodgeRed.png";
-import { BsWifi, BsBank, BsPaypal, BsPlus, BsPencil } from "react-icons/bs";
-import CapteursPieChart from "../../capteurs/capteurs.pieChart";
+import { BsWifi } from "react-icons/bs";
+
 export default function DaysOFF() {
   return (
     <div className="col-lg-4 mt-4">

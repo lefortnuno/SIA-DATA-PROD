@@ -15,28 +15,13 @@ module.exports.addCapteur = async (req, res) => {
 
 module.exports.updateCapteur = async (req, res) => {
   const userId = req.params.id;
-  const updateData = req.body; 
+  const updateData = req.body;
 
   try {
     const result = await Capteurs.updateCapteur(updateData, userId);
     ResponseHelper.sendResponse(res, result.success, result.message);
   } catch (error) {
     ResponseHelper.sendResponse(res, false, error.message, null, 500);
-  }
-};
-
-module.exports.deleteCapteur = async (req, res) => {
-  const userId = req.params.id;
-
-  try {
-    const deleteResult = await Capteurs.deleteCapteur(userId);
-    ResponseHelper.sendResponse(
-      res,
-      deleteResult.success,
-      deleteResult.message
-    );
-  } catch (error) {
-    ResponseHelper.sendResponse(res, false, error.message, 500);
   }
 };
 
@@ -49,21 +34,6 @@ module.exports.getAllCapteurs = async (req, res) => {
       "Liste récupérée avec succès !",
       result
     );
-  } catch (error) {
-    ResponseHelper.sendResponse(res, false, error.message, 500);
-  }
-};
-
-module.exports.getIdCapteur = async (req, res) => {
-  const userId = req.params.id;
-
-  try {
-    const result = await Capteurs.getIdCapteur({ id: userId });
-    if (result.length > 0) {
-      ResponseHelper.sendResponse(res, true, "Trouvé !", result[0]);
-    } else {
-      ResponseHelper.sendResponse(res, false, "Non trouvé !", null, 404);
-    }
   } catch (error) {
     ResponseHelper.sendResponse(res, false, error.message, 500);
   }

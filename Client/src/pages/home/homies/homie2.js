@@ -1,7 +1,5 @@
-import CapteursPieChart from "../../capteurs/capteurs.pieChart";
-import CapteursLineChart from "../../capteurs/capteurs.lineChart";
-import GanttChart from "../../productions/productions.ganttChart";
-import LoadingList from "../../../components/loading/listes/loadingList";
+import PieChart from "../../Charts/pie.chart";
+import LineChart from "../../Charts/line.chart";
 
 export default function Homie2() {
   return (
@@ -16,12 +14,12 @@ export default function Homie2() {
               borderRadius: "8px",
             }}
           >
-            <CapteursLineChart />
+            <LineChart />
           </div>
         </div>
 
         <div className="col-xl-4">
-          <CapteursPieChart />
+          <PieChart />
         </div>
 
         <div className="col-xl-3">

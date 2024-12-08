@@ -33,17 +33,15 @@ export default function PageNotFound() {
                     <img src={page404} alt="pdp" />
                   </div>
                 </div>
-                <div className="col-md-8 text-primary mt-6">
-                  <Loading
-                    text={"En cours de développement ..."}
-                  />
+                <div className="col-md-8 text-danger mt-6">
+                  <Loading text={"En cours de développement ..."} />
                 </div>
               </div>
               <button
                 onClick={redirectedToHome}
-                className="btn btn-primary w-30 m-2 text-white text-bold mb-4"
+                className="btn btn-danger w-30 m-2 text-white text-bold mb-4"
               >
-               Allez à l'accueil
+                Tableau de Bord
               </button>
             </div>
           </div>

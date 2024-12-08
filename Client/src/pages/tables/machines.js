@@ -5,8 +5,7 @@ import { formatDate } from "../../contexts/dates/formatDate";
 import Template from "../../components/template/template";
 import Pagination from "../../components/pagination/pagination";
 import LoadingTable from "../../components/loading/tables/loadingTable";
-import MachinesBarChart from "./machines.barChart";
-
+import BarChart from "../Charts/bar.chart"; 
 import { useEffect, useState } from "react";
 
 import "./machines.css";
@@ -30,7 +29,7 @@ export default function Machines() {
     };
   }, []);
 
-  useEffect(() => { 
+  useEffect(() => {
     const intervalId = setInterval(() => {
       getBarChart();
     }, 1000);
@@ -86,7 +85,7 @@ export default function Machines() {
   return (
     <Template>
       <main className="col-md-12 ms-sm-auto col-lg-12 px-md-4 mt-0 main">
-        {barChart.length > 0 && <MachinesBarChart data={barChart} />}
+        {barChart.length > 0 && <BarChart data={barChart} />}
         <div className="pt-3 pb-2 mb-3">
           <div className="text-center my-3 mt-0">
             <div className="d-flex justify-content-between align-items-center">

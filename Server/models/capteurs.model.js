@@ -26,7 +26,7 @@ Capteurs.addCapteur = async (newCapteur) => {
       newCapteur.vibration,
     ];
 
-    const result = await dbConn.query(query, values); 
+    const result = await dbConn.query(query, values);
 
     return result;
   } catch (error) {
@@ -38,35 +38,6 @@ Capteurs.getAllCapteurs = async (result) => {
   try {
     const result = await dbConn.query(reqSQL + reqOrdre);
 
-    return result.rows;
-  } catch (error) {
-    throw error;
-  }
-};
-
-Capteurs.deleteCapteur = async (id) => {
-  try {
-    const res = await dbConn.query(
-      "DELETE FROM capteurs WHERE id_capteur = $1",
-      [id]
-    );
-    if (res.rowCount > 0) {
-      return { success: true, message: "Capteurs supprimé avec succès !" };
-    } else {
-      return {
-        success: false,
-        message: "Échec de suppression! Capteurs non existant!",
-      };
-    }
-  } catch (error) {
-    throw new Error("Erreur lors de la suppression : " + error.message);
-  }
-};
-
-Capteurs.getIdCapteur = async (values) => {
-  try {
-    const requete = reqSQL + `WHERE id_capteur = $1`;
-    const result = await dbConn.query(requete, [values.id]);
     return result.rows;
   } catch (error) {
     throw error;

@@ -22,15 +22,11 @@ ChartJS.register(
 
 const url_req = `productions/pieChart/`;
 
-export default function ProductionPieChart() {
+export default function PieChart() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     getProductionData();
-    // const intervalId = setInterval(() => {
-    //   getProductionData();
-    // }, 1000);
-    // return () => clearInterval(intervalId);
   }, []);
 
   function getProductionData() {
@@ -60,14 +56,21 @@ export default function ProductionPieChart() {
         label: "Quantités Produites",
         data: data.map((item) => item.total_quantite), // Quantités produites pour chaque produit
         backgroundColor: [
-          "#FF6384",
-          "#36A2EB",
-          "#db3efe",
-          "#4CAF50",
           "#FF5252",
+          "#4CAF50",
+          "#db3efe",
+          "#36A2EB",
           "#FFCE56",
-        ], // Couleurs dynamiques
-        borderColor: ["#FF6384", "#36A2EB", "#db3efe", "#3E8E41", "#FFCE56"],
+          "#FF6384",
+        ],
+        borderColor: [
+          "#FF5252",
+          "#4CAF50",
+          "#db3efe",
+          "#36A2EB",
+          "#FFCE56",
+          "#FF6384",
+        ],
         borderWidth: 0,
       },
     ],
@@ -84,7 +87,7 @@ export default function ProductionPieChart() {
     >
       <div className="text-center mb-4">
         <h5 style={{ color: "#000", fontWeight: "bold" }}>
-          Quantités Produites par Type de Produit
+          Quantités Total Produites par Dodge
         </h5>
       </div>
       <div

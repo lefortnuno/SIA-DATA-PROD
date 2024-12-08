@@ -1,32 +1,28 @@
 import axios from "../../contexts/api/axios";
 import eventEmitter from "../../contexts/api/eventEmitter";
-import { formatDate, formatHoursMin } from "../../contexts/dates/formatDate";
+import { formatDate } from "../../contexts/dates/formatDate";
 
 import Template from "../../components/template/template";
 import Pagination from "../../components/pagination/pagination";
 import LoadingTable from "../../components/loading/tables/loadingTable";
-import CapteursLineChart from "./capteurs.lineChart";
-import CapteursPieChart from "./capteurs.pieChart";
+import VoitureDodge from "./dodge";
+import GanttChartVoiture from "../Charts/dodge.gantt.chart";
 
 import { useEffect, useState } from "react";
 
-import "./capteurs.css";
+import "./productions.css";
 
-const url_req = `capteurs/`;
-const histoPerPage = 5;
+const url_req = `productions/`;
+const histoPerPage = 2;
 
-export default function Capteurs() {
+export default function Productions() {
   const [histo, setHisto] = useState([]);
+  const [prod, setProd] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     getHisto();
-
-    // const intervalId = setInterval(() => {
-    //   getHisto();
-    // }, 1000);
-    // return () => clearInterval(intervalId);
   }, []);
 
   function getHisto() {
@@ -39,8 +35,7 @@ export default function Capteurs() {
           response.data.data.length > 0
         ) {
           const allHisto = response.data.data;
-          console.log("alll ", allHisto);
-
+          setProd(allHisto[0]["produit"]);
           setHisto(allHisto);
           setTotalPages(Math.ceil(allHisto.length / histoPerPage));
         } else {
@@ -60,21 +55,21 @@ export default function Capteurs() {
   return (
     <Template>
       <main className="col-md-12 ms-sm-auto col-lg-12 px-md-4 mt-0 main">
-        {/* <div className="row">
+        <div className="row">
           <div className="col-md-8">
-            {histo.length > 0 && <CapteursLineChart data={histo} />}
+            <GanttChartVoiture prod={prod} />
           </div>
           <div className="col-md-4">
-            {histo.length > 0 && <CapteursPieChart data={histo} />}
+            <VoitureDodge picName={prod} />
           </div>
-        </div> */}
-
-        <div className="pt-3 pb-2 mb-3">
+        </div>
+        <div className="mt-4">
           <div className="text-center my-3 mt-0">
             <div className="d-flex justify-content-between align-items-center">
               <div className="d-flex align-items-center">
                 <h5 className="mb-0 me-2 position-relative d-inline-block">
-                  Listes des capteurs :<span className="green-underline"></span>
+                  Listes des dodge en fabrication :
+                  <span className="green-underline"></span>
                 </h5>
               </div>
               <h5 className="mb-0 me-2 position-relative d-inline-block">
@@ -90,13 +85,12 @@ export default function Capteurs() {
             <table className="table table-striped w-100">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Libelle</th>
-                  <th>Date de mesure </th>
-                  <th>Temps de mesure </th>
-                  <th>Temperature</th>
-                  <th>Pression</th>
-                  <th>Vibration</th>
+                  <th>ID Commande</th>
+                  <th>Produit</th>
+                  <th>Date de lancement</th>
+                  <th>Date de fin prévue</th>
+                  <th>Progression</th>
+                  <th>Etat</th>
                 </tr>
               </thead>
               <tbody>
@@ -107,18 +101,24 @@ export default function Capteurs() {
                     {currentHisto.length > 0 ? (
                       currentHisto.map((s, key) => (
                         <tr key={key}>
-                          <td>{s.id_machine}</td>
-                          <td>{s.id_machine}</td>
-                          <td>{formatDate(s.date_mesure)}</td>
-                          <td>{formatHoursMin(s.temps_mesure)}</td>
-                          <td>{s.temperature}</td>
-                          <td>{s.pression}</td>
-                          <td>{s.vibration}</td>
+                          <td>{s.id_fabrication}</td>
+                          <td
+                            onClick={() => setProd(s.produit)}
+                            className="cursor-pointer"
+                          >
+                            {s.produit}
+                          </td>
+                          <td>{formatDate(s.date_lancement)}</td>
+                          <td>{formatDate(s.date_fin_prevue)}</td>
+                          <td>{s.progression_production}%</td>
+                          <td>
+                            {s.statut_fabrication ? "Complété" : "En cours"}
+                          </td>
                         </tr>
                       ))
                     ) : (
                       <tr>
-                        <td colSpan="10">Aucune donnée disponible</td>
+                        <td colSpan="6">Aucune donnée disponible</td>
                       </tr>
                     )}
                   </>

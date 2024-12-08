@@ -34,6 +34,10 @@ app.use(
   "/api/uploads",
   express.static(path.join(__dirname, process.env.IMAGE_STORAGE_PATH))
 );
+app.use(
+  "/api/uploads/dodge",
+  express.static(path.join(__dirname, process.env.IMAGE_STORAGE_PATH))
+);
 
 app.listen(process.env.PORT || process.env.IP_HOST, () => {
   console.log(`Lancé sur ${process.env.IP_HOST}:${process.env.PORT} .... `);

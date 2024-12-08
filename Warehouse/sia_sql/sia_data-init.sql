@@ -178,26 +178,50 @@ INSERT INTO
 VALUES
     (
         1,
-        'Produit A',
+        'D.CHALLENGER',
         100,
-        '2024-11-18',
-        '2024-12-29',
+        '2024-7-18',
+        '2024-11-02',
         true
     ),
     (
         2,
-        'Produit B',
+        'D.RAM',
         200,
-        '2024-11-29',
+        '2024-7-29',
         '2024-12-28',
         false
     ),
     (
         3,
-        'Produit C',
+        'D.CORONET',
         150,
-        '2024-11-27',
+        '2024-8-27',
         '2024-12-31',
+        false
+    ),
+    (
+        4,
+        'D.DART',
+        250,
+        '2024-8-1',
+        '2024-12-31',
+        false
+    ),
+    (
+        5,
+        'D.CHARGER',
+        235,
+        '2024-9-11',
+        '2024-12-16',
+        false
+    ),
+    (
+        6,
+        'D.VIPER',
+        400,
+        '2024-9-25',
+        '2024-12-29',
         false
     );
 
@@ -219,7 +243,7 @@ VALUES
     (
         1,
         1,
-        'Poste A',
+        'Argentine',
         'Découpage',
         '2024-11-21',
         '2024-11-30',
@@ -231,7 +255,7 @@ VALUES
     (
         2,
         2,
-        'Poste B',
+        'Espagne',
         'Assemblage',
         '2024-12-01',
         '2024-12-10',
@@ -243,7 +267,7 @@ VALUES
     (
         3,
         3,
-        'Poste C',
+        'Maroc',
         'Peinture',
         '2024-12-12',
         '2024-12-19',
@@ -251,6 +275,42 @@ VALUES
         0,
         0.0,
         3
+    ),
+    (
+        4,
+        4,
+        'Etat-Unis',
+        'Lavage',
+        '2024-12-19',
+        '2024-12-21',
+        false,
+        10,
+        3.0,
+        3
+    ),
+    (
+        5,
+        5,
+        'Canada',
+        'Coffrage',
+        '2024-12-21',
+        '2024-12-25',
+        false,
+        10,
+        2.0,
+        4
+    ),
+    (
+        6,
+        6,
+        'France',
+        'Emballeur',
+        '2024-12-24',
+        '2024-12-29',
+        false,
+        0,
+        0.0,
+        5
     );
 
 -- Insertion dans ressources
@@ -264,9 +324,48 @@ INSERT INTO
         qte_produit
     )
 VALUES
-    (1, 'Poste A', 'poste', 34.025917, -6.836099, 50),
-    (2, 'Poste B', 'poste', 34.025917, -6.836200, 30),
-    (3, 'Poste C', 'poste', 34.025917, -6.836300, 20);
+    (
+        1,
+        'Argentine',
+        'poste',
+        -34.9964963,
+        -64.9672817,
+        50
+    ),
+    (
+        2,
+        'Espagne',
+        'poste',
+        39.3260685,
+        -4.8379791,
+        30
+    ),
+    (3, 'Maroc', 'poste', 34.025917, -6.836300, 20),
+    (
+        4,
+        'Etat-Unis',
+        'poste',
+        48.27251380530047,
+        -99.52124322964949,
+        60
+    ),
+    (
+        5,
+        'Canada',
+        'poste',
+        61.0666922,
+        -107.991707,
+        40
+    ),
+    (6, 'France', 'poste', 48.8588897, 2.320041, 30),
+    (
+        7,
+        'Brésil',
+        'atelier',
+        -10.3333333,
+        -53.2,
+        50
+    );
 
 -- Insertion dans affectation_ressources
 INSERT INTO
@@ -274,137 +373,7 @@ INSERT INTO
 VALUES
     (1, 1, 1),
     (2, 2, 2),
-    (3, 3, 3);
-
--- Insertion dans dependances_etape
-INSERT INTO
-    dependances_etape (
-        id_dependance,
-        id_etape_precedente,
-        id_etape_suivante
-    )
-VALUES
-    (1, 1, 2),
-    (2, 2, 3);
-
--- ========================================================================
--- Nouvelles données
--- ========================================================================
--- Insertion dans ordres_fabrication (ajout de nouvelles commandes)
-INSERT INTO
-    ordres_fabrication (
-        id_fabrication,
-        produit,
-        quantite,
-        date_lancement,
-        date_fin_prevue,
-        statut_fabrication
-    )
-VALUES
-    (
-        4,
-        'Produit D',
-        250,
-        '2024-12-1',
-        '2024-12-31',
-        false
-    ),
-    (
-        5,
-        'Produit E',
-        100,
-        '2024-12-11',
-        '2024-12-16',
-        false
-    ),
-    (
-        6,
-        'Produit F',
-        20,
-        '2024-11-25',
-        '2024-12-29',
-        false
-    );
-
--- Insertion dans ressources (ajout de nouveaux postes ou ateliers)
-INSERT INTO
-    ressources (
-        id_ressource,
-        nom_ressource,
-        type_ressource,
-        latitude,
-        longitude,
-        qte_produit
-    )
-VALUES
-    (4, 'Poste D', 'poste', 34.026000, -6.837100, 60),
-    (5, 'Poste E', 'poste', 34.026100, -6.837200, 40),
-    (6, 'Poste F', 'poste', 34.026200, -6.837300, 30),
-    (
-        7,
-        'Poste G',
-        'atelier',
-        34.026300,
-        -6.837400,
-        50
-    );
-
--- Insertion dans suivi_etapes (ajout d'étapes supplémentaires pour chaque produit)
-INSERT INTO
-    suivi_etapes (
-        id_etape,
-        id_fabrication,
-        poste,
-        operation,
-        debut_etape,
-        fin_etape,
-        statut_etape,
-        progression_production,
-        temps_ecoule,
-        niveau_etape
-    )
-VALUES
-    (
-        4,
-        4,
-        'Poste D',
-        'Lavage',
-        '2024-12-19',
-        '2024-12-21',
-        false,
-        10,
-        3.0,
-        3
-    ),
-    (
-        5,
-        5,
-        'Poste F',
-        'Coffrage',
-        '2024-12-21',
-        '2024-12-25',
-        false,
-        10,
-        2.0,
-        4
-    ),
-    (
-        6,
-        6,
-        'Poste G',
-        'Emballeur',
-        '2024-12-24',
-        '2024-12-29',
-        false,
-        0,
-        0.0,
-        5
-    );
-
--- Insertion dans affectation_ressources
-INSERT INTO
-    affectation_ressources (id_affectation, id_etape, id_ressource)
-VALUES
+    (3, 3, 3),
     (4, 4, 4),
     (5, 5, 5),
     (6, 6, 6);
@@ -417,7 +386,13 @@ INSERT INTO
         id_etape_suivante
     )
 VALUES
-    (3, 3, 4), 
+    (1, 1, 2),
+    (2, 2, 3),
+    (3, 3, 4),
     (5, 5, 6);
 
+-- ========================================================================
+-- Nouvelles données
+-- ========================================================================
+-- Insertion dans ordres_fabrication (ajout de nouvelles commandes)
 -- FIN

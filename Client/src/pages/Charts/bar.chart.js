@@ -18,7 +18,7 @@ ChartJS.register(
   Legend
 );
 
-export default function MachinesBarChart({ data }) {
+export default function BarChart({ data }) {
   const machines = data.map((d) => d.libelle_machine);
   const avgTemperatures = data.map((d) => parseFloat(d.avg_temperature));
   const avgPressions = data.map((d) => parseFloat(d.avg_pression));
@@ -98,6 +98,8 @@ export default function MachinesBarChart({ data }) {
         padding: "20px",
         backgroundColor: "#f9f9f9",
         borderRadius: "8px",
+        height: "65vh",
+        width: "70%",
       }}
     >
       <div className="text-center mb-4">
@@ -107,7 +109,10 @@ export default function MachinesBarChart({ data }) {
       </div>
       {data && data.length > 0 ? (
         // <Bar data={barChartData} options={{ responsive: true }} />
-        <Bar data={barChartData} options={options} />
+        <Bar
+          data={barChartData}
+          options={options} 
+        />
       ) : (
         <p>Aucune donnée à afficher.</p>
       )}

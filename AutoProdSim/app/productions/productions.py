@@ -93,7 +93,7 @@ def simulate_step_progression(ordres):
             
             temps_ecoule = float(temps_ecoule) if isinstance(temps_ecoule, str) else temps_ecoule  
             temps_ecoule += temps_avance
-            progression_production += random.randint(1,10)
+            progression_production += random.randint(5,20)
             statut_etape = temps_ecoule >= temps_total  # Déterminer si l'étape est terminée
 
             temps_ecoule = min(temps_ecoule, temps_total)  # Limiter à la durée totale

@@ -9,12 +9,12 @@ export default function GanttChart() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetchGanttChartData();
+    // fetchGanttChartData();
 
-    // const intervalId = setInterval(() => {
-    //   fetchGanttChartData();
-    // }, 1000);
-    // return () => clearInterval(intervalId);
+    const intervalId = setInterval(() => {
+      fetchGanttChartData();
+    }, 1000);
+    return () => clearInterval(intervalId);
   }, []);
 
   const fetchGanttChartData = () => {
@@ -106,9 +106,7 @@ export default function GanttChart() {
         borderRadius: "8px",
       }}
     >
-      <div
-        className="text-center mb-4"
-      >
+      <div className="text-center mb-4">
         <h5 style={{ color: "#000", fontWeight: "bold" }}>
           Diagramme de Gantt - Planification des étapes
         </h5>
@@ -119,12 +117,11 @@ export default function GanttChart() {
             className="d-flex justify-content-center align-items-center"
             style={{ height: "300px" }}
           >
-            <Spinner color="primary" />
+            <Spinner color="danger" />
           </div>
         ) : error ? (
           <p className="text-danger text-center">
-            Aucune donnée à afficher. Veuillez
-            réessayer.
+            Aucune donnée à afficher. Veuillez réessayer.
           </p>
         ) : ganttData.length > 1 ? (
           <Chart
