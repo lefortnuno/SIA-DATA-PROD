@@ -1,3 +1,4 @@
+import axios from "../../contexts/api/axios";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,6 +9,8 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { Spinner } from "reactstrap";
+import { useEffect, useState } from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -18,7 +21,12 @@ ChartJS.register(
   Legend
 );
 
-export default function BarChart({ data }) {
+const url_req = `machines/`;
+export default function BarChart() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   const machines = data.map((d) => d.libelle_machine);
   const avgTemperatures = data.map((d) => parseFloat(d.avg_temperature));
   const avgPressions = data.map((d) => parseFloat(d.avg_pression));
@@ -91,15 +99,41 @@ export default function BarChart({ data }) {
     },
   };
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      getBarChart();
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  function getBarChart() {
+    axios
+      .get(url_req + `barChart/`)
+      .then(function (response) {
+        if (
+          response.status === 200 &&
+          response.data.success &&
+          response.data.data.length > 0
+        ) {
+          const allHisto = response.data.data;
+          setData(allHisto);
+          setLoading(false);
+        } else {
+          setData([]);
+        }
+      })
+      .catch((error) => {
+        setData([]);
+      });
+  }
+
   return (
     <div
-      className="p-4 mb-3 mt-2"
+      className="col-md-12 mt-2 pb-2"
       style={{
-        padding: "20px",
+        padding: "40px",
         backgroundColor: "#f9f9f9",
         borderRadius: "8px",
-        height: "65vh",
-        width: "70%",
       }}
     >
       <div className="text-center mb-4">
@@ -107,15 +141,26 @@ export default function BarChart({ data }) {
           Analyse par Machine : Température, Pression et Vibration
         </h5>
       </div>
-      {data && data.length > 0 ? (
-        // <Bar data={barChartData} options={{ responsive: true }} />
-        <Bar
-          data={barChartData}
-          options={options} 
-        />
-      ) : (
-        <p>Aucune donnée à afficher.</p>
-      )}
+      <div className="">
+        {loading ? (
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{ height: "250px" }}
+          >
+            <Spinner color="danger" />
+          </div>
+        ) : error ? (
+          <p className="text-danger text-center">
+            Aucune donnée à afficher. Veuillez réessayer.
+          </p>
+        ) : data.length > 1 ? (
+          <Bar data={barChartData} options={options} />
+        ) : (
+          <p className="text-center">
+            Aucune donnée disponible pour le moment.
+          </p>
+        )}
+      </div>
     </div>
   );
 }

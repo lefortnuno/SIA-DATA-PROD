@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 import axios from "../../contexts/api/axios";
-import { Spinner } from "reactstrap"; // Exemple d'indicateur visuel de chargement
+import { Spinner } from "reactstrap";   
 
 export default function GanttChart() {
   const [ganttData, setGanttData] = useState([]);

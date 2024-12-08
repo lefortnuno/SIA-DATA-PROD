@@ -25,11 +25,8 @@ export default function Fotter() {
                   <div className="nav-link pe-0 text-muted">E.N.I</div>
                 </li>
                 <li className="nav-item cursor-pointer">
-                  <div className="nav-link text-muted">Apropos</div>
-                </li>
-                <li className="nav-item cursor-pointer">
-                  <div className="nav-link pe-0 text-muted">License</div>
-                </li>
+                  <div className="nav-link text-muted">APROPOS</div>
+                </li> 
               </ul>
             </div>
           </div>
