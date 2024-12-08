@@ -51,8 +51,7 @@ JOIN suivi_etapes se ON ef.id_fabrication = se.id_fabrication
 LEFT JOIN affectation_ressources ar ON se.id_etape = ar.id_etape
 LEFT JOIN ressources r ON ar.id_ressource = r.id_ressource
 LEFT JOIN dependances_etape de ON se.id_etape = de.id_etape_suivante
-ORDER BY ef.id_fabrication, se.debut_etape;
-`
+ORDER BY ef.id_fabrication, se.debut_etape; `
     );
 
     return result.rows;
@@ -158,10 +157,37 @@ Productions.getPieChart = async (result) => {
 
 Productions.getLineChart = async (result) => {
   try {
-    const result =
-      await dbConn.query(`SELECT DATE_TRUNC('month', date_lancement) AS mois, produit, SUM(quantite) AS total_quantite FROM ordres_fabrication GROUP BY DATE_TRUNC('month', date_lancement), produit ORDER BY mois, produit;
-`);
+    const result = await dbConn.query(
+      `SELECT DATE_TRUNC('month', date_lancement) AS mois, produit, SUM(quantite) AS total_quantite FROM ordres_fabrication GROUP BY DATE_TRUNC('month', date_lancement), produit ORDER BY mois, produit; `
+    );
 
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+Productions.getGanttChartVoiture = async (data) => {
+  try {
+    const allEtapegantt = `SELECT 
+    ef.id_fabrication, 
+    ef.produit, 
+    se.operation, 
+    TO_CHAR(se.debut_etape, 'YYYY-MM-DD') AS debut_etape, 
+    TO_CHAR(se.fin_etape, 'YYYY-MM-DD') AS fin_etape, 
+    se.progression_production, 
+    se.statut_etape, 
+    r.nom_ressource AS ressource_production, 
+    de.id_etape_precedente
+FROM ordres_fabrication ef
+JOIN suivi_etapes se ON ef.id_fabrication = se.id_fabrication
+LEFT JOIN affectation_ressources ar ON se.id_etape = ar.id_etape
+LEFT JOIN ressources r ON ar.id_ressource = r.id_ressource
+LEFT JOIN dependances_etape de ON se.id_etape = de.id_etape_suivante
+WHERE ef.produit = $1
+ORDER BY ef.id_fabrication, se.debut_etape;
+`;
+    const result = await dbConn.query(allEtapegantt, [data.produit]);
     return result.rows;
   } catch (error) {
     throw error;

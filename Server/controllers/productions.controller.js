@@ -98,3 +98,14 @@ module.exports.getLineChart = async (req, res) => {
     ResponseHelper.sendResponse(res, false, error.message, 500);
   }
 };
+
+module.exports.getGanttChartVoiture = async (req, res) => {
+  let data = req.body;
+
+  try {
+    const result = await Productions.getGanttChartVoiture(data);
+    ResponseHelper.sendResponse(res, true, "GanttChart Voiture !", result);
+  } catch (error) {
+    ResponseHelper.sendResponse(res, false, error.message, 500);
+  }
+};

@@ -29,11 +29,6 @@ export default function ProductionLineChartByMonth() {
 
   useEffect(() => {
     getHisto();
-    
-    // const intervalId = setInterval(() => {
-    //   getHisto();
-    // }, 1000);
-    // return () => clearInterval(intervalId);
   }, []);
 
   function getHisto() {
@@ -56,87 +51,52 @@ export default function ProductionLineChartByMonth() {
       });
   }
 
-  // Fonction pour générer tous les mois entre deux dates
-  function generateMonths(start, end) {
-    const startDate = new Date(start);
-    const endDate = new Date(end);
-    const months = [];
-    while (startDate <= endDate) {
-      months.push(new Date(startDate).toISOString().slice(0, 7)); // Format "YYYY-MM"
-      startDate.setMonth(startDate.getMonth() + 1);
-    }
-    return months;
-  }
+  // Générer tous les mois fixes de janvier à décembre 2024
+  const allMonths = Array.from({ length: 12 }, (_, i) => {
+    const month = i + 1; // De 1 à 12
+    return `2024-${month.toString().padStart(2, "0")}`; // Format "2024-01", "2024-02", ...
+  });
 
-  // Obtenir tous les mois entre le premier et le dernier mois
-  const allMonths = (() => {
-    if (data.length === 0) return [];
-    const sortedData = [...data].sort(
-      (a, b) => new Date(a.mois) - new Date(b.mois)
-    );
-    const startMonth = sortedData[0].mois;
-    const endMonth = sortedData[sortedData.length - 1].mois;
-    const generatedMonths = generateMonths(startMonth, endMonth);
-
-    // Ajouter des mois fictifs si moins de 3 mois
-    while (generatedMonths.length < 3) {
-      const lastDate = new Date(
-        generatedMonths[generatedMonths.length - 1] || endMonth
-      );
-      lastDate.setMonth(lastDate.getMonth() + 1);
-      generatedMonths.push(lastDate.toISOString().slice(0, 7));
-    }
-
-    return generatedMonths;
-  })();
-
-  // Groupement des données par produit// Vérifiez si `data` contient des valeurs
-  if (!data || data.length === 0) {
-    console.error("Les données `data` sont vides ou non définies :", data);
-  }
-
-  // Initialisation de groupedData
-  const groupedData = {};
-
-  // Groupement des données par produit et mois
+  const groupedData = [];
   data.forEach((item) => {
     const { produit, mois, total_quantite } = item;
 
-    // Vérifiez que chaque élément a les propriétés nécessaires
-    if (!produit || !mois || total_quantite === undefined) {
-      console.warn("Élément invalide dans les données :", item);
-      return;
+    // Formater la clé mois au format "YYYY-MM"
+    const formattedMonth = mois.slice(0, 7); // Garde uniquement "YYYY-MM"
+
+    let productEntry = groupedData.find((entry) => entry.produit === produit);
+    if (!productEntry) {
+      productEntry = { produit, moisData: {} };
+      groupedData.push(productEntry);
     }
 
-    // Ajout des données dans groupedData
-    if (!groupedData[produit]) {
-      groupedData[produit] = {};
-    }
-    groupedData[produit][mois] = total_quantite;
+    productEntry.moisData[formattedMonth] = total_quantite || 0;
   });
 
-  // Vérifiez si groupedData est bien structuré
-  console.log("Données groupées :", groupedData);
+  const datasets = groupedData.map((entry, index) => {
+    const { produit, moisData } = entry; 
+    const dataPoints = allMonths.map((month) => {
+      const cle = moisData[month]; 
+      const val = moisData[month] || 0;
+      return val;
+    });
 
-  // Création des datasets avec sécurité
-  const datasets = Object.keys(groupedData).map((produit, index) => ({
-    label: produit,
-    data: allMonths.map((month) => groupedData[produit][month] || 0), // Ajoute 0 pour les mois manquants
-    borderColor: getColor(index),
-    backgroundColor: getColor(index, 0.2),
-    tension: 0.4, // Rendre la courbe fluide
-    borderWidth: 2,
-    pointBackgroundColor: getColor(index),
-    pointBorderColor: "#fff",
-    pointHoverBackgroundColor: "#fff",
-    pointHoverBorderColor: getColor(index),
-  }));
-
-  // Vérifiez les datasets générés
-  console.log("Datasets générés :", datasets);
+    return {
+      label: produit,
+      data: dataPoints,
+      borderColor: getColor(index),
+      backgroundColor: getColor(index, 0.2),
+      tension: 0.4, // Rendre la courbe fluide
+      borderWidth: 2,
+      pointBackgroundColor: getColor(index),
+      pointBorderColor: "#fff",
+      pointHoverBackgroundColor: "#fff",
+      pointHoverBorderColor: getColor(index),
+    };
+  });
 
   const chartData = {
-    labels: allMonths, // Tous les mois générés
+    labels: allMonths,
     datasets,
   };
 
@@ -149,7 +109,7 @@ export default function ProductionLineChartByMonth() {
       },
       title: {
         display: true,
-        text: "Évolution des Quantités Produites par Mois et Produit",
+        text: "Évolution des Quantités Produites par Mois et Produit (2024)",
       },
     },
     scales: {
@@ -159,9 +119,8 @@ export default function ProductionLineChartByMonth() {
           text: "Mois",
         },
         ticks: {
-          callback: function (value, index, values) {
-            const monthLabel = this.getLabelForValue(value);
-            return monthLabel.slice(0, 7); // Afficher "YYYY-MM"
+          callback: function (value, index) {
+            return allMonths[index]?.slice(0, 7) || "";
           },
         },
       },
@@ -177,23 +136,21 @@ export default function ProductionLineChartByMonth() {
 
   function getColor(index, alpha = 1) {
     const colors = [
-      "#FF6384",
-      "#36A2EB",
-      "#FFCE56",
-      "#4BC0C0",
-      "#9966FF",
-      "#FF9F40",
+      "rgba(255, 99, 132, ALPHA)",
+      "rgba(54, 162, 235, ALPHA)",
+      "rgba(255, 206, 86, ALPHA)",
+      "rgba(75, 192, 192, ALPHA)",
+      "rgba(153, 102, 255, ALPHA)",
+      "rgba(255, 159, 64, ALPHA)",
     ];
-    return `${colors[index % colors.length]}${
-      alpha < 1 ? `${Math.round(alpha * 255).toString(16)}` : ""
-    }`;
+    return colors[index % colors.length].replace("ALPHA", alpha);
   }
 
   return (
     <div className="pt-1 pb-2 mb-3">
       <div className="text-center mb-4">
         <h5 style={{ color: "#000", fontWeight: "bold" }}>
-          Évolution Mensuelle des Quantités Produites par Produit
+          Évolution Mensuelle des Quantités Produites par Produit (2024)
         </h5>
       </div>
       {data && data.length > 0 ? (

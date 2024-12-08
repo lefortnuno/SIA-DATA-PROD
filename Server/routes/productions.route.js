@@ -2,6 +2,7 @@ const router = require("express").Router();
 const ProductionsController = require("../controllers/productions.controller");
 
 router.post("/", ProductionsController.addProduction);
+router.post("/ganttChartVoiture/", ProductionsController.getGanttChartVoiture);
 
 router.get("/", ProductionsController.getAllProductions);
 router.get("/pieChart/", ProductionsController.getPieChart);
