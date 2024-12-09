@@ -36,7 +36,9 @@ export default function Sidebar() {
             <Link
               to="/home/"
               className={`nav-link customNavLink ${
-                location.pathname === "/home/" ? "atato" : ""
+                location.pathname === "/home/" || location.pathname === "/"
+                  ? "atato"
+                  : ""
               }`}
             >
               <div className="navIcone">

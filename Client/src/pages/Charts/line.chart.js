@@ -50,7 +50,7 @@ export default function LineChart() {
         setData([]);
       });
   }
- 
+
   const allMonths = Array.from({ length: 12 }, (_, i) => {
     const month = i + 1; // De 1 à 12
     return `2024-${month.toString().padStart(2, "0")}`; // Format "2024-01", "2024-02", ...
@@ -61,7 +61,7 @@ export default function LineChart() {
     const { produit, mois, total_quantite } = item;
 
     // format "YYYY-MM"
-    const formattedMonth = mois.slice(0, 7);  
+    const formattedMonth = mois.slice(0, 7);
 
     let productEntry = groupedData.find((entry) => entry.produit === produit);
     if (!productEntry) {
@@ -73,9 +73,9 @@ export default function LineChart() {
   });
 
   const datasets = groupedData.map((entry, index) => {
-    const { produit, moisData } = entry; 
+    const { produit, moisData } = entry;
     const dataPoints = allMonths.map((month) => {
-      const cle = moisData[month]; 
+      const cle = moisData[month];
       const val = moisData[month] || 0;
       return val;
     });
@@ -155,7 +155,7 @@ export default function LineChart() {
       {data && data.length > 0 ? (
         <Line data={chartData} options={chartOptions} />
       ) : (
-        <p>Aucune donnée à afficher.</p>
+        <p className="text-center ">Aucune donnée à afficher.</p>
       )}
     </div>
   );
