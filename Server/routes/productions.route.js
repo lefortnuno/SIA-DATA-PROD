@@ -7,5 +7,7 @@ router.get("/", ProductionsController.getGanttChart);
 router.get("/pieChart/", ProductionsController.getPieChart);
 router.get("/lineChart/", ProductionsController.getLineChart);
 router.get("/leafletChart/", ProductionsController.getLeafletChart);
+ 
+router.put("/:id", ProductionsController.updateProduction);
 
 module.exports = router;

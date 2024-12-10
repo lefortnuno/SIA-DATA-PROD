@@ -5,7 +5,6 @@ let dbConn = require("../config/db");
 let Productions = function (production) {
   this.id_fabrication = production.id_fabrication;
 };
- 
 
 Productions.getGanttChart = async (result) => {
   try {
@@ -39,7 +38,27 @@ ORDER BY ef.id_fabrication, se.debut_etape; `
     throw error;
   }
 };
- 
+
+Productions.updateProduction = async (updateProduction, id) => {
+  try {
+    const setQuery = Object.keys(updateProduction)
+      .map((key, index) => `"${key}" = $${index + 1}`)
+      .join(", ");
+
+    const values = [...Object.values(updateProduction), id]; // Ajouter l'ID pour la condition WHERE
+
+    r = await dbConn.query(
+      `UPDATE suivi_etapes SET ${setQuery} WHERE id_etape = $${values.length}`,
+      values
+    );
+
+    console.log(" Donnee MAJ par le python ", r);
+    return { success: true, message: "Mise à jour réussie" };
+  } catch (error) {
+    console.log("CCCC ", error);
+    throw new Error("Erreur MIse à jour : " + error.message);
+  }
+};
 
 Productions.getPieChart = async (result) => {
   try {

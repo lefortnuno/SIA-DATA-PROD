@@ -16,6 +16,19 @@ module.exports.getGanttChart = async (req, res) => {
   }
 };
 
+module.exports.updateProduction = async (req, res) => {
+  const userId = req.params.id;
+  const updateData = req.body;
+  console.log("CCCC ", userId, updateData);
+
+  try {
+    const result = await Productions.updateProduction(updateData, userId);
+    ResponseHelper.sendResponse(res, result.success, result.message);
+  } catch (error) {
+    ResponseHelper.sendResponse(res, false, error.message, null, 500);
+  }
+};
+
 module.exports.getPieChart = async (req, res) => {
   try {
     const result = await Productions.getPieChart();
