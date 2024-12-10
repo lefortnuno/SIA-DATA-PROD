@@ -71,7 +71,7 @@ module.exports.getIdMachine = async (req, res) => {
 
 module.exports.placeAuGlitch = async (req, res) => {
   try {
-    const result = await Machines.getAllMachines();
+    const result = await Machines.glitchResetDB();
     ResponseHelper.sendResponse(
       res,
       true,
