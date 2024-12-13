@@ -11,7 +11,7 @@ export default function Fotter() {
                   className="font-weight-bold"
                   target="_blank"
                 >
-                  © 2024 Trofel
+                  © 2024 TROFEL & YAYA
                 </a>{" "}
                 - TOUS DROITS RÉSERVÉS.
               </div>
@@ -26,7 +26,7 @@ export default function Fotter() {
                 </li>
                 <li className="nav-item cursor-pointer">
                   <div className="nav-link text-muted">APROPOS</div>
-                </li> 
+                </li>
               </ul>
             </div>
           </div>
