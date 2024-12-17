@@ -71,6 +71,7 @@ module.exports.getIdMachine = async (req, res) => {
 };
 
 module.exports.placeAuGlitch = async (req, res) => {
+  routeName = "";
   try {
     const result = await Machines.glitchResetDB();
     ResponseHelper.sendResponse(
@@ -112,13 +113,12 @@ module.exports.getAllMachinesIDM = async (req, res) => {
   }
 };
 
-module.exports.routeNameInFrontend = async (req, res) => { 
+module.exports.routeNameInFrontend = async (req, res) => {
   let data = req.body;
-  routeName = data.routeName; 
+  routeName = data.routeName;
 };
 
-module.exports.getRouteNameInFrontend = async (req, res) => { 
-
+module.exports.getRouteNameInFrontend = async (req, res) => {
   try {
     const result = routeName;
     res.status(200).send(result);

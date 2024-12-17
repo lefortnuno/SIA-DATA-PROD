@@ -25,9 +25,9 @@ def route_monitor():
     while True:
         route_name = get_routes_name()
         if route_name == "productions":
-            Thread(target=productions).start()  # Exécute productions dans un thread
+            Thread(target=productions).start() 
         elif route_name == "capteurs":
-            Thread(target=capteurs).start()  # Exécute capteurs dans un thread
+            Thread(target=capteurs).start()   
         time.sleep(TIME_DELAI)
 
 if __name__ == "__main__":

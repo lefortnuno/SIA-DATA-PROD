@@ -109,7 +109,7 @@ export default function BarChart() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       glitchResetDataBase();
-    }, 3000);
+    }, 6000);
     return () => clearInterval(intervalId);
   }, []);
 

@@ -31,7 +31,7 @@ LEFT JOIN affectation_ressources ar ON se.id_etape = ar.id_etape
 LEFT JOIN ressources r ON ar.id_ressource = r.id_ressource
 LEFT JOIN dependances_etape de ON se.id_etape = de.id_etape_suivante
 ORDER BY ef.id_fabrication, se.debut_etape; `
-    );
+    ); 
 
     return result.rows;
   } catch (error) {
@@ -51,9 +51,9 @@ Productions.updateProduction = async (updateProduction, id) => {
       `UPDATE suivi_etapes SET ${setQuery} WHERE id_etape = $${values.length}`,
       values
     );
- 
+
     return { success: true, message: "Mise à jour réussie" };
-  } catch (error) { 
+  } catch (error) {
     throw new Error("Erreur MIse à jour : " + error.message);
   }
 };
