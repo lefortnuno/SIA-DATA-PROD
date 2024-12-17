@@ -133,12 +133,13 @@ def save_data_to_excel(data):
             big_data_df = pd.DataFrame(big_data)
             with pd.ExcelWriter(init_file, mode="a", if_sheet_exists="overlay", engine="openpyxl") as writer:
                 big_data_df.to_excel(writer, index=False, header=False, startrow=writer.sheets['Sheet1'].max_row)
+            # print("Données sauvegardées dans capteurs_init.xlsx")
 
         if valid_data:
             valid_data_df = pd.DataFrame(valid_data)
             with pd.ExcelWriter(final_file, mode="a", if_sheet_exists="overlay", engine="openpyxl") as writer:
                 valid_data_df.to_excel(writer, index=False, header=False, startrow=writer.sheets['Sheet1'].max_row)
-
+            print("Données sauvegardées dans capteurs.xlsx")
     except Exception as e:
         print(f"Erreur lors de la sauvegarde dans Excel : {e}")
 
