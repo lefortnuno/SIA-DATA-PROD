@@ -1,6 +1,7 @@
 "use strict";
 const Machines = require("../models/machines.model");
 const ResponseHelper = require("../helpers/responseHelper");
+let routeName = "";
 
 module.exports.addMachine = async (req, res) => {
   let data = req.body;
@@ -108,5 +109,21 @@ module.exports.getAllMachinesIDM = async (req, res) => {
     );
   } catch (error) {
     ResponseHelper.sendResponse(res, false, error.message, 500);
+  }
+};
+
+module.exports.routeNameInFrontend = async (req, res) => { 
+  let data = req.body;
+  routeName = data.routeName; 
+};
+
+module.exports.getRouteNameInFrontend = async (req, res) => { 
+
+  try {
+    const result = routeName;
+    res.status(200).send(result);
+  } catch (error) {
+    console.error("Erreur dans getRouteNameInFrontend :", error);
+    res.status(500).send("Erreur interne du serveur");
   }
 };

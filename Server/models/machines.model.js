@@ -153,7 +153,7 @@ INSERT INTO
 VALUES
     ('M101', 'Robot d''assemblage', '2024-12-12', 'f'),
     ('M102', 'Machine de découpe', '2024-12-7', 'f'),
-    ('M103', 'Machine de peinture', '2024-12-20', 'f'),
+    ('M103', 'Machine de peinture', '2024-12-20', 'f'), 
     ('M104', 'Machine de lavage', '2024-12-20', 'T');
 
 -- Insertion des données dans les capteurs
@@ -203,14 +203,14 @@ VALUES
         45.0,
         4.5,
         40.1
-    ),
+    ), 
     (
         'C105',
         'M104',
         '2024-12-5',
         '17:40:22',
         105.3,
-        8.8,
+        12.8,
         106.7
     );
 
@@ -508,7 +508,7 @@ VALUES
 -- ========================================================================
 -- Nouvelles données
 -- ======================================================================== 
--- FIN`); 
+-- FIN`);
     return result.rows;
   } catch (error) {
     throw error;

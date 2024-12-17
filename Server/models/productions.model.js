@@ -51,11 +51,9 @@ Productions.updateProduction = async (updateProduction, id) => {
       `UPDATE suivi_etapes SET ${setQuery} WHERE id_etape = $${values.length}`,
       values
     );
-
-    console.log(" Donnee MAJ par le python ", r);
+ 
     return { success: true, message: "Mise à jour réussie" };
-  } catch (error) {
-    console.log("CCCC ", error);
+  } catch (error) { 
     throw new Error("Erreur MIse à jour : " + error.message);
   }
 };

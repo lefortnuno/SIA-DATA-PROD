@@ -1,4 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "../../contexts/api/axios";
 
 import {
   BsHouseFill,
@@ -17,6 +19,13 @@ import "./sidebar.css";
 
 export default function Sidebar() {
   const location = useLocation();
+
+  const executePythonFunction = async (route) => {
+    axios
+      .post("machines/routeName/", { routeName: route })
+      .then(function (response) {})
+      .catch((error) => {});
+  };
 
   return (
     <aside
@@ -48,6 +57,7 @@ export default function Sidebar() {
                 className={`navText ${
                   location.pathname === "/home/" ? "atato" : ""
                 }`}
+                onClick={() => executePythonFunction("productions")}
               >
                 Tableau de Bord
               </span>
@@ -88,6 +98,7 @@ export default function Sidebar() {
                 className={`navText ${
                   location.pathname === "/machines/" ? "atato" : ""
                 }`}
+                onClick={() => executePythonFunction("capteurs")}
               >
                 Capteurs et Données IRL
               </span>

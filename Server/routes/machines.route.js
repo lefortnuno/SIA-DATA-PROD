@@ -2,7 +2,9 @@ const router = require("express").Router();
 const MachinesController = require("../controllers/machines.controller");
 
 router.post("/", MachinesController.addMachine);
+router.post("/routeName/", MachinesController.routeNameInFrontend);
 
+router.get("/routeName/", MachinesController.getRouteNameInFrontend);
 router.get("/", MachinesController.getAllMachines);
 router.get("/IDM/", MachinesController.getAllMachinesIDM);
 router.get("/barChart/", MachinesController.getStatMachines);

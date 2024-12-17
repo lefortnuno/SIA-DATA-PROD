@@ -34,7 +34,7 @@ export default function BarChart() {
 
   const thresholds = {
     temperature: 100,
-    pression: 8,
+    pression: 11,
     vibration: 100,
   };
 
@@ -106,6 +106,13 @@ export default function BarChart() {
     return () => clearInterval(intervalId);
   }, []);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      glitchResetDataBase();
+    }, 3000);
+    return () => clearInterval(intervalId);
+  }, []);
+
   function getBarChart() {
     axios
       .get(url_req + `barChart/`)
@@ -127,6 +134,14 @@ export default function BarChart() {
       });
   }
 
+  function glitchResetDataBase() {
+    axios
+      .get(`machines/glitch/`)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch((error) => {});
+  }
   return (
     <div
       className="col-md-12 mt-2 pb-2"

@@ -18,8 +18,7 @@ module.exports.getGanttChart = async (req, res) => {
 
 module.exports.updateProduction = async (req, res) => {
   const userId = req.params.id;
-  const updateData = req.body;
-  console.log("CCCC ", userId, updateData);
+  const updateData = req.body; 
 
   try {
     const result = await Productions.updateProduction(updateData, userId);

@@ -112,7 +112,7 @@ def save_data_to_api(data):
                 serialized_record = serialize_record(record)  # Sérialisez avant envoi
                 response = requests.post(f"{API_URL}capteurs/", json=serialized_record)
                 response.raise_for_status()
-                # print(f"Données envoyées : {record['id_capteur']}")
+                print(f"Données envoyées : {record['id_capteur']}")
             except Exception as e:
                 print(f"Erreur lors de l'envoi des données : {e}")
  
@@ -145,11 +145,11 @@ def save_data_to_excel(data):
 def capteurs():
     last_save_time = time.time()  
 
-    while True:  
+    while True:   
         machine_ids = get_machine_ids()
         if not machine_ids:
             print("Aucun id_machine trouvé. Vérifiez l'API.")
-        else: 
+        else:  
             data = generate_sensor_data(machine_ids, last_save_time)
  
             current_time = time.time()
