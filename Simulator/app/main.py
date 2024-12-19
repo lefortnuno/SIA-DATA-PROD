@@ -32,3 +32,4 @@ def route_monitor():
 
 if __name__ == "__main__":
     route_monitor() 
+    # capteurs()
