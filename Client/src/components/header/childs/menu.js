@@ -6,7 +6,7 @@ import { BsGear, BsPower } from "react-icons/bs";
 
 export default function Menu() {
   const navigate = useNavigate();
-  const [showLogoutModal, setShowLogoutModal] = useState(false); 
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleShowLogoutModal = () => setShowLogoutModal(true);
   const handleCloseLogoutModal = () => setShowLogoutModal(false);
@@ -37,7 +37,13 @@ export default function Menu() {
           >
             <li>
               <div className="user-box">
-                <div className="u-img">
+                <a
+                  className="u-img"
+                  href="https://trofel.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ cursor: "pointer" }}
+                >
                   <img
                     src={
                       process.env.REACT_APP_SUN_COMPLET_URL +
@@ -45,12 +51,18 @@ export default function Menu() {
                     }
                     alt="Photo de profil"
                   />
-                </div>
+                </a>
                 <div className="u-text">
                   <h5> LEFORT</h5>
-                  <span className="btn btn-rounded btn-danger btn-sm">
+                  <a
+                    className="btn btn-rounded btn-danger btn-sm"
+                    href="https://trofel.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ cursor: "pointer" }}
+                  >
                     Profile
-                  </span>
+                  </a>
                   <p>CA.23031093</p>
                 </div>
               </div>
